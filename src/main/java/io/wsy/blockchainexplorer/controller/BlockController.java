@@ -80,7 +80,7 @@ public class BlockController {
         List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setHeight(block.getHeight());
-            blockListDTO.setTime(block.getTime());
+            blockListDTO.setTime(block.getTime().getTime());
             blockListDTO.setTxSize(block.getTxSize());
             blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
             return blockListDTO;

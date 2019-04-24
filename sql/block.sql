@@ -25,7 +25,7 @@ CREATE TABLE `block` (
   `blockhash` char(64) NOT NULL,
   `blockchain_id`int(10) not null,
   `height`int(11) not null,
-  `time`datetime not null,
+  `time`datetime(3) not null,
   `tx_size`int(20) not null,
   `size_on_disk`bigint(20) not null,
   `difficulty`double not null,

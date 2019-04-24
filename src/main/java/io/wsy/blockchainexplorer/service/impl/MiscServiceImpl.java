@@ -49,6 +49,7 @@ public class MiscServiceImpl implements MiscService {
     public void importFromHash(String blockHash, Boolean isClean) throws Throwable {
         if (isClean){
 blockMapper.truncate();
+
 transactionMapper.truncate();
 transaction_detailMapper.truncate();
 //todo tuncate transaction table
