@@ -35,6 +35,7 @@ public class BlockController {
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
 
+
     @GetMapping("/getRecentBlocks")
     public List<BlockListDTO> getRecentBlocks() throws Throwable {
 
