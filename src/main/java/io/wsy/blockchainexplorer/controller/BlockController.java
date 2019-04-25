@@ -33,29 +33,30 @@ public class BlockController {
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
 
-
+    //获取区块链的块的列表
+    //首页的当前币的前五个块
     @GetMapping("/getRecentBlocks")
-    public List<BlockListDTO> getRecentBlocks() throws Throwable {
+    public List<BlockListDTO> getRecentBlocks(@RequestParam(defaultValue = "2") Integer blockchainId) throws Throwable {
 
 
 
-//        String bestBlcokhash = bitcoinJsonRpcClient.getBestBlcokhash();
-//        String tempBlockhash = bestBlcokhash;
-//
-//        List<BlockListDTO> blockListDTOS = new LinkedList<>();
-//
-//        for (int i = 0; i < 5; i++) {
-//            JSONObject block = bitcoinApi.getNoTxBlock(tempBlockhash);
-//            BlockListDTO blockListDTO = new BlockListDTO();
-//            blockListDTO.setHeight(block.getInteger("height"));
-//            Long time = block.getLong("time");
-//            Date date = new Date(time * 1000);
-//            blockListDTO.setTime(date);
-//            blockListDTO.setTxSize(block.getJSONArray("tx").size());
-//            blockListDTO.setSizeOnDisk(block.getLong("size"));
-//            blockListDTOS.add(blockListDTO);
-//            tempBlockhash = block.getString("previousblockhash");
-//        }
+        String bestBlcokhash = bitcoinJsonRpcClient.getBestBlcokhash();
+        String tempBlockhash = bestBlcokhash;
+
+        List<BlockListDTO> blockListDTOS = new LinkedList<>();
+
+        for (int i = 0; i < 5; i++) {
+            JSONObject block = bitcoinApi.getNoTxBlock(tempBlockhash);
+            BlockListDTO blockListDTO = new BlockListDTO();
+            blockListDTO.setHeight(block.getInteger("height"));
+            Long time = block.getLong("time");
+            Date date = new Date(time * 1000);
+            blockListDTO.setTime(date);
+            blockListDTO.setTxSize(block.getJSONArray("tx").size());
+            blockListDTO.setSizeOnDisk(block.getLong("size"));
+            blockListDTOS.add(blockListDTO);
+            tempBlockhash = block.getString("previousblockhash");
+        }
 
 //        JSONObject chainInfo = bitcoinApi.getChainInfo();
 //        Integer height = chainInfo.getInteger("blocks");
@@ -76,15 +77,15 @@ public class BlockController {
 //            blockListDTOS.add(blockListDTO);
 //        }
 
-        List<Block> blocks = blockMapper.selectRecent();
-        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
-            BlockListDTO blockListDTO = new BlockListDTO();
-            blockListDTO.setHeight(block.getHeight());
-            blockListDTO.setTime(block.getTime().getTime());
-            blockListDTO.setTxSize(block.getTxSize());
-            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
-            return blockListDTO;
-        }).collect(Collectors.toList());
+//        List<Block> blocks = blockMapper.selectRecent();
+//        List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
+//            BlockListDTO blockListDTO = new BlockListDTO();
+//            blockListDTO.setHeight(block.getHeight());
+//            blockListDTO.setTime(block.getTime().getTime());
+//            blockListDTO.setTxSize(block.getTxSize());
+//            blockListDTO.setSizeOnDisk(block.getSizeOnDisk());
+//            return blockListDTO;
+//        }).collect(Collectors.toList());
 
 
         return blockListDTOS;
