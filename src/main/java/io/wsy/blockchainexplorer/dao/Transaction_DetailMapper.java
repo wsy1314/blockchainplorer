@@ -17,11 +17,13 @@ public interface Transaction_DetailMapper {
 
     int insertSelective(Transaction_Detail record);
 
-    Transaction_Detail selectByPrimaryKey(Transaction_DetailKey key);
+    Transaction_Detail selectByPrimaryKey(String key);
 
     int updateByPrimaryKeySelective(Transaction_Detail record);
 
     int updateByPrimaryKey(Transaction_Detail record);
 
     List<Transaction_Detail> selectTransactionTxid(String txid);
+
+
 }
