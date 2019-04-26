@@ -1,6 +1,9 @@
 package io.wsy.blockchainexplorer.dto;
 
+import io.wsy.blockchainexplorer.po.Transaction_Detail;
+
 import java.util.Date;
+import java.util.List;
 
 public class TransactionInBlockDTO {
 
@@ -11,6 +14,10 @@ public class TransactionInBlockDTO {
     private Long size;
 
     private Date time;
+
+    private Double oneTxOutputTotal;
+
+    private List<Transaction_Detail> txDetailInTxInfos;
 
     public String getTxid() {
         return txid;
@@ -42,5 +49,21 @@ public class TransactionInBlockDTO {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Double getOneTxOutputTotal() {
+        return oneTxOutputTotal;
+    }
+
+    public void setOneTxOutputTotal(Double oneTxOutputTotal) {
+        this.oneTxOutputTotal = oneTxOutputTotal;
+    }
+
+    public List<Transaction_Detail> getTxDetailInTxInfos() {
+        return txDetailInTxInfos;
+    }
+
+    public void setTxDetailInTxInfos(List<Transaction_Detail> txDetailInTxInfos) {
+        this.txDetailInTxInfos = txDetailInTxInfos;
     }
 }

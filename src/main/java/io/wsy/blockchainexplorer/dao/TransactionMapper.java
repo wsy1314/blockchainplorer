@@ -1,6 +1,9 @@
 package io.wsy.blockchainexplorer.dao;
 
+import io.wsy.blockchainexplorer.dto.TransactionInBlockDTO;
 import io.wsy.blockchainexplorer.po.Transaction;
+
+import java.util.List;
 
 public interface TransactionMapper {
     int deleteByPrimaryKey(String txid);
@@ -16,4 +19,6 @@ public interface TransactionMapper {
     int updateByPrimaryKeySelective(Transaction record);
 
     int updateByPrimaryKey(Transaction record);
+
+    List<TransactionInBlockDTO> seleByBlockhash(String blockhash);
 }

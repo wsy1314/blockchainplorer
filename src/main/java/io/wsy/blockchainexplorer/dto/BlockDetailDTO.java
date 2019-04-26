@@ -26,6 +26,13 @@ public class BlockDetailDTO {
 
     private String markleRoot;
 
+    private Integer blockchainId;
+
+
+    private Integer bcId;
+
+    private Double jiangli;
+
     private List<TransactionInBlockDTO> transactions;
 
     public String getBlockhash() {
@@ -122,5 +129,13 @@ public class BlockDetailDTO {
 
     public void setTransactions(List<TransactionInBlockDTO> transactions) {
         this.transactions = transactions;
+    }
+
+    public Integer getBlockchainId() {
+        return blockchainId;
+    }
+
+    public void setBlockchainId(Integer blockchainId) {
+        this.blockchainId = blockchainId;
     }
 }

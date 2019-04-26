@@ -1,5 +1,6 @@
 package io.wsy.blockchainexplorer.dao;
 
+import io.wsy.blockchainexplorer.dto.BlockDetailDTO;
 import io.wsy.blockchainexplorer.po.Block;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface BlockMapper {
 
     int insertSelective(Block record);
 
-    Block selectByPrimaryKey(String blockhash);
+    BlockDetailDTO selectByPrimaryKey(String blockhash);
 
     int updateByPrimaryKeySelective(Block record);
 

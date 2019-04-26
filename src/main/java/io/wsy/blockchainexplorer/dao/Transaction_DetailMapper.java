@@ -22,4 +22,6 @@ public interface Transaction_DetailMapper {
     int updateByPrimaryKeySelective(Transaction_Detail record);
 
     int updateByPrimaryKey(Transaction_Detail record);
+
+    List<Transaction_Detail> selectTransactionTxid(String txid);
 }

@@ -18,6 +18,13 @@
       and address = #{address,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectTransactionTxid" parameterType="io.wsy.blockchainexplorer.po.Transaction_DetailKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction_detail
+    where txid = #{txid,jdbcType=CHAR}
+  </select>
+
   <select id="selectByAddress" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
