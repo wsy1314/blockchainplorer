@@ -128,7 +128,7 @@ public class BlockController {
         //查询快信息
         BlockDetailDTO blockDetailDTO = blockMapper.selectByPrimaryKey(blockhash);
         //根据快的hash查询出每笔交易的信息
-        List<TransactionInBlockDTO> transactionInBlockDTOS = transactionMapper.seleByBlockhash(blockDetailDTO.getBlockhash());
+        List<TransactionInBlockDTO> transactionInBlockDTOS = transactionMapper.selectByBlockhash(blockDetailDTO.getBlockhash());
         //根据每笔交易ID查询出交易信息
         for (TransactionInBlockDTO transactionInBlockDTO : transactionInBlockDTOS) {
             List<Transaction_Detail> txDetailInTxInfos = transaction_detailMapper.selectTransactionTxid(transactionInBlockDTO.getTxid());
@@ -141,8 +141,24 @@ public class BlockController {
     }
 
 
+    /***
+     * 根据块的高度查询块信息
+     * @param blockheight
+     * @return
+     */
     @GetMapping("/getBlockDetailByHeight")
     public BlockDetailDTO getBlockDetailByHeight(@RequestParam Integer blockheight) {
-        return null;
+        //查询出块的信息
+        BlockDetailDTO blockDetailDTO = blockMapper.selectBlockDetailByHeight(blockheight);
+        //根据块的hash查询出每笔交易信息
+        List<TransactionInBlockDTO> transactionInBlockDTOS = transactionMapper.selectByBlockhash(blockDetailDTO.getBlockhash());
+        //根据每笔交易ID查询交易信息
+        for (TransactionInBlockDTO transactionInBlockDTO : transactionInBlockDTOS) {
+            List<Transaction_Detail> transaction_details = transaction_detailMapper.selectTransactionTxid(transactionInBlockDTO.getTxid());
+            transactionInBlockDTO.setTxDetailInTxInfos(transaction_details);
+        }
+        //把查询的结果信息放入其中
+        blockDetailDTO.setTransactions(transactionInBlockDTOS);
+        return blockDetailDTO;
     }
 }

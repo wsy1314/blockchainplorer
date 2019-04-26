@@ -29,7 +29,7 @@
     where txid = #{txid,jdbcType=CHAR}
   </select>
 
-  <select id="seleByBlockhash" parameterType="java.lang.String" resultMap="BaseTransactionInBlockDTO">
+  <select id="selectByBlockhash" parameterType="java.lang.String" resultMap="BaseTransactionInBlockDTO">
     select
     <include refid="Base_Column_List" />
     from transaction

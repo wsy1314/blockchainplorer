@@ -20,5 +20,5 @@ public interface TransactionMapper {
 
     int updateByPrimaryKey(Transaction record);
 
-    List<TransactionInBlockDTO> seleByBlockhash(String blockhash);
+    List<TransactionInBlockDTO> selectByBlockhash(String blockhash);
 }

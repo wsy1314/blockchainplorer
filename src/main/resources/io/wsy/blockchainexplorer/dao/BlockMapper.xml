@@ -41,6 +41,14 @@
   where blockhash = #{blockhash,jdbcType=CHAR}
 </select>
 
+  <select id="selectBlockDetailByHeight" parameterType="java.lang.Integer" resultMap="BaseBlockDetailDTO">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height,jdbcType=CHAR}
+  </select>
+
+
   <select id="selectRecent" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
